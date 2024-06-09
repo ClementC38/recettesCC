@@ -3,14 +3,22 @@
 #' @param request Internal parameter for `{shiny}`.
 #'     DO NOT REMOVE.
 #' @import shiny
+#' @importFrom bslib bs_theme
 #' @noRd
 app_ui <- function(request) {
   tagList(
     # Leave this function for adding external resources
     golem_add_external_resources(),
     # Your application UI logic
-    fluidPage(
-      h1("recettesCC")
+    fluidPage(theme = bslib::bs_theme(version = 5),
+              navbarPage(title = "Recettes CC",
+                         tabPanel("Recherche",
+                                  mod_page_recherche_ui("page_recherche")
+                         ),
+                         tabPanel("Recette",
+                                  mod_page_recette_ui("page_recette")
+                         )
+              )
     )
   )
 }

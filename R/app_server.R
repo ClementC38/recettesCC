@@ -3,7 +3,35 @@
 #' @param input,output,session Internal parameters for {shiny}.
 #'     DO NOT REMOVE.
 #' @import shiny
+#' @importFrom RSQLite dbConnect dbReadTable dbDisconnect
 #' @noRd
 app_server <- function(input, output, session) {
   # Your application server logic
+  # Ouverture DB + décharge les bases dans des data.frames
+  db_recettes = dbConnect(drv = RSQLite::SQLite(),
+                          system.file("bdd/bdd_recette.sqlite", package = "recettesCC"))
+
+  tab_recettes = dbReadTable(db_recettes, "recettes")
+  tab_ingredients = dbReadTable(db_recettes, "ingredients")
+  tab_instructions = dbReadTable(db_recettes, "instructions")
+
+  #Init reactive values
+  r_global = reactiveValues(
+    #Ces tables restent fixes mais sont transmisent à l'aide de r_global
+    tab_recettes = tab_recettes,
+    tab_ingredients = tab_ingredients,
+    tab_instructions = tab_instructions,
+
+    #Identifiant de la recette passé à la page_recette
+    id_recette = NULL
+  )
+
+  #serveurs des modules
+  mod_page_recherche_server("page_recherche", r_global = r_global)
+  mod_page_recette_server("page_recette", r_global = r_global)
+
+  #Destruction de la session
+  onSessionEnded(function(){
+    dbDisconnect(db_recettes)
+  })
 }
