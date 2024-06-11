@@ -12,7 +12,7 @@ mod_page_recherche_ui <- function(id){
   ns <- NS(id)
   tagList(
     sidebarLayout(
-      sidebarPanel(width = 3,
+      sidebarPanel(width = 4,
                    h2("Chercher une recette"),
                    textInput(ns("texte_recherche"), "Rechercher :", NULL),
                    selectizeInput(
@@ -45,11 +45,12 @@ mod_page_recherche_ui <- function(id){
                                       label = "Type de plat :",
                                       choices = list("Entr\u00e9e" = "Entr\u00e9e", "Plat" = "Plat", "Dessert" = "Dessert"),
                                       selected = list("Entr\u00e9e", "Plat", "Dessert")),
-                   actionButton(ns("search_button"), label = "Rechercher"),
+                     actionButton(ns("search_button"), label = "Rechercher", width = "auto"),
+                     actionButton(ns("recette_alea"), label = "Recette au hasard", width = "auto")
       ),
 
       # Show a plot of the generated distribution
-      mainPanel(
+      mainPanel(width = 8,
         h3("Liste des recettes correspondant \u00e0 la recherche :"),
         DTOutput(outputId = ns("listing_recettes"))
       )
@@ -75,7 +76,6 @@ mod_page_recherche_server <- function(id, r_global = r_global){
     })
 
 
-
     #Init reactive values
     r_local <- reactiveValues(
       current_recettes = NULL#tab des recettes recherchées
@@ -96,10 +96,16 @@ mod_page_recherche_server <- function(id, r_global = r_global){
       showNotification(ui = "S\u00e9lection mise \u00e0 jour.", type = "message", duration = 1)
     })
 
-    #Even clic tableau (update idrecette + lien vers recette)
+    #Event clic tableau (update id_recette)
     observeEvent(input$listing_recettes_cell_clicked$value, {
       r_global$id_recette <- r_local$current_recettes[input$listing_recettes_cell_clicked$row,"id_recette"]
     })
+
+    #Event recette aléatoire
+    observeEvent(input$recette_alea, {
+      r_global$id_recette <- sample(x = r_global$tab_recettes$id_recette, size = 1)
+    })
+
 
     #Outputs
     output$listing_recettes <- renderDT(expr = {

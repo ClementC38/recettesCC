@@ -32,11 +32,17 @@ app_server <- function(input, output, session) {
   mod_page_recherche_server("page_recherche", r_global = r_global)
   mod_page_recette_server("page_recette", r_global = r_global)
 
-  #Passe à la page "recettes" quand une nouvelle recette est sélectionnée
+  #Events
+  ##Passe à la page "recettes" quand une nouvelle recette est sélectionnée
   observeEvent(r_global$id_recette, {
-    # browser()
     updateNavbarPage(inputId="main_nav",
                      selected="Recette")
+  })
+
+  ##Affiche l'onglet recette la première fois que id_recette est truthy
+  golem::invoke_js("hideid", "page-recette")#par défaut caché
+  observeEvent(r_global$id_recette, {
+    golem::invoke_js("showid", "page-recette")
   })
 
   #Destruction de la session

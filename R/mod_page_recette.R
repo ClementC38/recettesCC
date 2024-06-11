@@ -10,22 +10,22 @@
 mod_page_recette_ui <- function(id){
   ns <- NS(id)
   tagList(
-    htmlOutput(outputId = ns("nom_recette")),
-    numericInput(inputId = ns("Nb_personnes"),
-                 label = "Nombre de personnes",
-                 value = NULL,
-                 min = 0, step = 1),
-    hr(),
-    h4("Ingr\u00e9dients :"),
-    fluidRow(DTOutput(outputId = ns("tab_ingredients"), width = "auto")),
-    br(),
-    h4("Etapes :"),
-    fluidRow(DTOutput(outputId = ns("tab_instructions"), width = "auto")),
-    br(),
-    h4("Commentaire :"),
-    htmlOutput(outputId = ns("texte_commentaire"))
-
-  )
+    div(id = "page-recette",
+        htmlOutput(outputId = ns("nom_recette")),
+        numericInput(inputId = ns("Nb_personnes"),
+                     label = "Nombre de personnes",
+                     value = NULL,
+                     min = 0, step = 1),
+        hr(),
+        h4("Ingr\u00e9dients :"),
+        DTOutput(outputId = ns("tab_ingredients"), width = "50%"),
+        br(),
+        h4("Etapes :"),
+        fluidRow(DTOutput(outputId = ns("tab_instructions"), width = "80%")),
+        br(),
+        h4("Commentaire :"),
+        htmlOutput(outputId = ns("texte_commentaire"))
+    ))
 }
 
 #' page_recette Server Functions
@@ -34,6 +34,7 @@ mod_page_recette_ui <- function(id){
 #' @noRd
 mod_page_recette_server <- function(id, r_global = r_global){
   moduleServer( id, function(input, output, session){
+
     ns <- session$ns
 
     r_local <- reactiveValues(
@@ -63,12 +64,12 @@ mod_page_recette_server <- function(id, r_global = r_global){
     })
 
     #Update des quantités d'ingrédients selon le nombre de personnes
-  observeEvent(eventExpr = input$Nb_personnes, handlerExpr = {
-    req(input$Nb_personnes)
-    r_local$current_ingredients <- convert_proportions(tab = r_local$current_ingredients,
-                                                       base_nb_personnes = r_local$base_Nb_personnes,
-                                                       new_nb_personnes = input$Nb_personnes)
-  })
+    observeEvent(eventExpr = input$Nb_personnes, handlerExpr = {
+      req(input$Nb_personnes)
+      r_local$current_ingredients <- convert_proportions(tab = r_local$current_ingredients,
+                                                         base_nb_personnes = r_local$base_Nb_personnes,
+                                                         new_nb_personnes = input$Nb_personnes)
+    })
 
 
     #Output
@@ -104,7 +105,6 @@ mod_page_recette_server <- function(id, r_global = r_global){
     output$id <- renderPrint({
       print(r_global$id_recette)
     })
-
   })
 }
 

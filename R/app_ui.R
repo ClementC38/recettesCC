@@ -10,13 +10,13 @@ app_ui <- function(request) {
     # Leave this function for adding external resources
     golem_add_external_resources(),
     # Your application UI logic
-    fluidPage(theme = bslib::bs_theme(version = 5),
+    fluidPage(theme = bslib::bs_theme(version = 4, preset = "lux"),
               navbarPage(title = "Recettes CC",
                          id = "main_nav",
                          tabPanel("Recherche",
                                   mod_page_recherche_ui("page_recherche")
                          ),
-                         tabPanel("Recette",
+                         tabPanel(title = "Recette",
                                   mod_page_recette_ui("page_recette")
                          )
               )

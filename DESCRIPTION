@@ -1,8 +1,7 @@
 Package: recettesCC
 Title: Recettes de cuisine de Clément
-Version: 0.9
-Authors@R: 
-    person("Clément", "Claustre", , "clement.claustre@gmail.com", role = c("cre", "aut"))
+Version: 1.0
+Authors@R: person('Clément', 'Claustre', email = 'clement.claustre@gmail.com', role = c('cre', 'aut'))
 Description: Mon livre de recettes (surtout des desserts).
 License: MIT + file LICENSE
 URL: https://github.com/ClementC38/recettesCC
