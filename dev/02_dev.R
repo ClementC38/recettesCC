@@ -29,6 +29,9 @@ golem::add_module(name = "page_recette", with_test = TRUE) # Name of the module
 # golem::add_utils("helpers", with_test = TRUE)
 golem::add_fct("filtre_recettes", with_test = TRUE)
 golem::add_fct("clean_recettes", with_test = TRUE)
+golem::add_fct("DT_theme", with_test = TRUE)
+golem::add_fct("DT_add_checkbox", with_test = TRUE)
+golem::add_fct("convert_proportions", with_test = TRUE)
 
 ## External resources
 ## Creates .js and .css files at inst/app/www

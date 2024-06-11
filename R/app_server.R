@@ -4,6 +4,7 @@
 #'     DO NOT REMOVE.
 #' @import shiny
 #' @importFrom RSQLite dbConnect dbReadTable dbDisconnect
+#' @importFrom dplyr mutate
 #' @noRd
 app_server <- function(input, output, session) {
   # Your application server logic
@@ -12,7 +13,8 @@ app_server <- function(input, output, session) {
                           system.file("bdd/bdd_recette.sqlite", package = "recettesCC"))
 
   tab_recettes = dbReadTable(db_recettes, "recettes")
-  tab_ingredients = dbReadTable(db_recettes, "ingredients")
+  tab_ingredients = dbReadTable(db_recettes, "ingredients") |>
+    mutate(quantite = as.numeric(as.character(quantite)))
   tab_instructions = dbReadTable(db_recettes, "instructions")
 
   #Init reactive values
@@ -29,6 +31,13 @@ app_server <- function(input, output, session) {
   #serveurs des modules
   mod_page_recherche_server("page_recherche", r_global = r_global)
   mod_page_recette_server("page_recette", r_global = r_global)
+
+  #Passe à la page "recettes" quand une nouvelle recette est sélectionnée
+  observeEvent(r_global$id_recette, {
+    # browser()
+    updateNavbarPage(inputId="main_nav",
+                     selected="Recette")
+  })
 
   #Destruction de la session
   onSessionEnded(function(){

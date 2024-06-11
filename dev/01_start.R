@@ -81,9 +81,9 @@ ingredients <- read.csv2("C:/Users/PC-Clem/Desktop/appli/appli V2/data/ingredien
 instructions <- read.csv2("C:/Users/PC-Clem/Desktop/appli/appli V2/data/instructions.csv")
 
 
-dbWriteTable(mydb, "recettes", recettes)
-dbWriteTable(mydb, "ingredients", ingredients)
-dbWriteTable(mydb, "instructions", instructions)
+dbWriteTable(mydb, "recettes", recettes, overwrite = FALSE)
+dbWriteTable(mydb, "ingredients", ingredients, overwrite = FALSE)
+dbWriteTable(mydb, "instructions", instructions, overwrite = FALSE)
 
 dbListTables(mydb)
 dbDisconnect(mydb)

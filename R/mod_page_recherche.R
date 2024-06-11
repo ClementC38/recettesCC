@@ -18,7 +18,7 @@ mod_page_recherche_ui <- function(id){
                    selectizeInput(
                      inputId = ns("ingredient_must"),
                      label = "Avec :",
-                     choices = c("A", "B"),#list_ingredients,
+                     choices = NULL, #c("A", "B"),#list_ingredients,
                      selected = NULL,
                      multiple = TRUE,
                      width = "100%",
@@ -31,7 +31,7 @@ mod_page_recherche_ui <- function(id){
                    selectizeInput(
                      inputId = ns("ingredient_cannot"),
                      label = "Sans :",
-                     choices = c("A", "B"),#list_ingredients,
+                     choices = NULL,#c("A", "B"),#list_ingredients,
                      selected = NULL,
                      multiple = TRUE,
                      width = "100%",
@@ -43,14 +43,14 @@ mod_page_recherche_ui <- function(id){
                      )),
                    checkboxGroupInput(ns("type_recette"),
                                       label = "Type de plat :",
-                                      choices = list("Entrée" = "Entrée", "Plat" = "Plat", "Dessert" = "Dessert"),
-                                      selected = list("Entrée", "Plat", "Dessert")),
+                                      choices = list("Entr\u00e9e" = "Entr\u00e9e", "Plat" = "Plat", "Dessert" = "Dessert"),
+                                      selected = list("Entr\u00e9e", "Plat", "Dessert")),
                    actionButton(ns("search_button"), label = "Rechercher"),
       ),
 
       # Show a plot of the generated distribution
       mainPanel(
-        h3("Liste des recettes correspondant à la recherche :"),
+        h3("Liste des recettes correspondant \u00e0 la recherche :"),
         DTOutput(outputId = ns("listing_recettes"))
       )
     )
@@ -65,10 +65,20 @@ mod_page_recherche_server <- function(id, r_global = r_global){
     ns <- session$ns
 
     #Update de l'UI selon les ingrédients présents dans la base
+    observeEvent(eventExpr = r_global$tab_ingredients, handlerExpr = {
+      updateSelectizeInput(session = session, inputId = "ingredient_must",
+                           choices = unique(r_global$tab_ingredients$nom_ingredient))
+
+
+      updateSelectizeInput(session = session, inputId = "ingredient_cannot",
+                           choices = unique(r_global$tab_ingredients$nom_ingredient))
+    })
+
+
 
     #Init reactive values
     r_local <- reactiveValues(
-      current_recettes = NULL
+      current_recettes = NULL#tab des recettes recherchées
     )
 
     #Update lors de la recherche
@@ -81,13 +91,20 @@ mod_page_recherche_server <- function(id, r_global = r_global){
                                                  ingredient_cannot = input$ingredient_cannot,
                                                  type_recette = input$type_recette)
 
+
+
+      showNotification(ui = "S\u00e9lection mise \u00e0 jour.", type = "message", duration = 1)
+    })
+
+    #Even clic tableau (update idrecette + lien vers recette)
+    observeEvent(input$listing_recettes_cell_clicked$value, {
+      r_global$id_recette <- r_local$current_recettes[input$listing_recettes_cell_clicked$row,"id_recette"]
     })
 
     #Outputs
     output$listing_recettes <- renderDT(expr = {
       clean_recettes(r_local$current_recettes)
     })
-
   })
 }
 

@@ -1,0 +1,7 @@
+Autre :
+Recette au hasard
+Nettoyer bdd
+Fonction ajout entrée bdd
+Esthétique
+infobox => Mes recettes, je suis succeptible de changer les quantités selons mes essais
+

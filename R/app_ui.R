@@ -12,6 +12,7 @@ app_ui <- function(request) {
     # Your application UI logic
     fluidPage(theme = bslib::bs_theme(version = 5),
               navbarPage(title = "Recettes CC",
+                         id = "main_nav",
                          tabPanel("Recherche",
                                   mod_page_recherche_ui("page_recherche")
                          ),

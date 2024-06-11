@@ -5,19 +5,19 @@
 #' @return The return value, if any, from executing the function.
 #'
 #' @importFrom dplyr filter pull
+#' @importFrom purrr map
 #' @noRd
 #'
 filtre_recettes <- function(tab_recettes, tab_ingredients,
                             texte_recherche, ingredient_must,
                             ingredient_cannot, type_recette){
-
-  if(!is.null(texte_recherche)){
+  if(!is.null(texte_recherche) & texte_recherche != ""){
     tab_recettes <- tab_recettes |>
       filter(grepl(texte_recherche, nom_recette, ignore.case = TRUE))
   }
 
   if(!is.null(ingredient_must)){
-    list_id_ok_must <- sapply(ingredient_must, function(x){
+    list_id_ok_must <- map(ingredient_must, function(x){
       tab_ingredients |>#check chaque ingrédient
       filter(nom_ingredient %in% x) |>
       pull(id_recette)
