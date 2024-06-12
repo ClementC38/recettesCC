@@ -1,4 +1,3 @@
 Autre :
 Fonction ajout entrée bdd
-infobox => Mes recettes, je suis succeptible de changer les quantités selons mes essais
 
