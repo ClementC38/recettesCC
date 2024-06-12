@@ -11,6 +11,7 @@
 filtre_recettes <- function(tab_recettes, tab_ingredients,
                             texte_recherche, ingredient_must,
                             ingredient_cannot, type_recette){
+
   if(!is.null(texte_recherche) & texte_recherche != ""){
     tab_recettes <- tab_recettes |>
       filter(grepl(texte_recherche, nom_recette, ignore.case = TRUE))

@@ -39,7 +39,7 @@ app_server <- function(input, output, session) {
                      selected="Recette")
   })
 
-  ##Affiche l'onglet recette la première fois que id_recette est truthy
+  ##cache l'onglet recette et l'affiche la première fois que id_recette est modofié
   golem::invoke_js("hideid", "page-recette")#par défaut caché
   observeEvent(r_global$id_recette, {
     golem::invoke_js("showid", "page-recette")

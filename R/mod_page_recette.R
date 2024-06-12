@@ -18,7 +18,7 @@ mod_page_recette_ui <- function(id){
                      min = 0, step = 1),
         hr(),
         h4("Ingr\u00e9dients :"),
-        DTOutput(outputId = ns("tab_ingredients"), width = "50%"),
+        fluidRow(DTOutput(outputId = ns("tab_ingredients"), width = "50%")),
         br(),
         h4("Etapes :"),
         fluidRow(DTOutput(outputId = ns("tab_instructions"), width = "80%")),
@@ -73,6 +73,11 @@ mod_page_recette_server <- function(id, r_global = r_global){
 
 
     #Output
+    output$nom_recette <- renderUI({
+      req(r_global$id_recette)
+      h2(r_local$current_recette$nom_recette)
+    })
+
     output$tab_ingredients <- renderDT({
       req(r_global$id_recette)
       r_local$current_ingredients |>
@@ -92,19 +97,11 @@ mod_page_recette_server <- function(id, r_global = r_global){
     })
 
     output$texte_commentaire <- renderUI({
-      req(r_global$id_recette)
+      req(r_global$id_recette,
+          r_local$current_recette$commentaire)
       p(r_local$current_recette$commentaire)
     })
 
-    output$nom_recette <- renderUI({
-      req(r_global$id_recette)
-      h2(r_local$current_recette$nom_recette)
-    })
-
-
-    output$id <- renderPrint({
-      print(r_global$id_recette)
-    })
   })
 }
 

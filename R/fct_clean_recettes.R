@@ -8,7 +8,6 @@
 #'
 #' @noRd
 clean_recettes <- function(current_recettes){
-  req(current_recettes)
   current_recettes <- current_recettes |>
     select("Recette" = nom_recette, "Pr\u00e9paration (min)" = duree) |>
     DT_theme(theme = "minimal") |>

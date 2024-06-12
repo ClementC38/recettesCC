@@ -14,11 +14,11 @@ mod_page_recherche_ui <- function(id){
     sidebarLayout(
       sidebarPanel(width = 4,
                    h2("Chercher une recette"),
-                   textInput(ns("texte_recherche"), "Rechercher :", NULL),
+                   textInput(ns("texte_recherche"), "Nom :", NULL),
                    selectizeInput(
                      inputId = ns("ingredient_must"),
                      label = "Avec :",
-                     choices = NULL, #c("A", "B"),#list_ingredients,
+                     choices = NULL,#init à NULL
                      selected = NULL,
                      multiple = TRUE,
                      width = "100%",
@@ -31,7 +31,7 @@ mod_page_recherche_ui <- function(id){
                    selectizeInput(
                      inputId = ns("ingredient_cannot"),
                      label = "Sans :",
-                     choices = NULL,#c("A", "B"),#list_ingredients,
+                     choices = NULL,#init à NULL
                      selected = NULL,
                      multiple = TRUE,
                      width = "100%",
@@ -45,14 +45,14 @@ mod_page_recherche_ui <- function(id){
                                       label = "Type de plat :",
                                       choices = list("Entr\u00e9e" = "Entr\u00e9e", "Plat" = "Plat", "Dessert" = "Dessert"),
                                       selected = list("Entr\u00e9e", "Plat", "Dessert")),
-                     actionButton(ns("search_button"), label = "Rechercher", width = "auto"),
-                     actionButton(ns("recette_alea"), label = "Recette au hasard", width = "auto")
+                   actionButton(ns("search_button"), label = "Rechercher", width = "auto"),
+                   actionButton(ns("recette_alea"), label = "Recette au hasard", width = "auto")
       ),
 
       # Show a plot of the generated distribution
       mainPanel(width = 8,
-        h3("Liste des recettes correspondant \u00e0 la recherche :"),
-        DTOutput(outputId = ns("listing_recettes"))
+                h3("Liste des recettes correspondant \u00e0 la recherche :"),
+                DTOutput(outputId = ns("listing_recettes"))
       )
     )
   )
@@ -91,8 +91,6 @@ mod_page_recherche_server <- function(id, r_global = r_global){
                                                  ingredient_cannot = input$ingredient_cannot,
                                                  type_recette = input$type_recette)
 
-
-
       showNotification(ui = "S\u00e9lection mise \u00e0 jour.", type = "message", duration = 1)
     })
 
@@ -109,6 +107,7 @@ mod_page_recherche_server <- function(id, r_global = r_global){
 
     #Outputs
     output$listing_recettes <- renderDT(expr = {
+      req(r_local$current_recettes)
       clean_recettes(r_local$current_recettes)
     })
   })
