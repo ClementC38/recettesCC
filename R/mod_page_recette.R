@@ -41,7 +41,7 @@ mod_page_recette_server <- function(id, r_global = r_global){
       current_recette = NULL,
       current_ingredients = NULL,
       current_instructions = NULL,
-      base_Nb_personnes = NULL
+      prec_Nb_personnes = NULL
     )
 
     #Extraction des instructions et ingrédients sur update de l'id_recette
@@ -57,7 +57,7 @@ mod_page_recette_server <- function(id, r_global = r_global){
         filter(id_recette %in% r_global$id_recette)
 
       #Sauvegarde le nombre de personnes de base pour calculer les doses selon le nb de personnes
-      r_local$base_Nb_personnes <- r_local$current_recette$Nb_personnes
+      r_local$prec_Nb_personnes <- r_local$current_recette$Nb_personnes
 
       #UI
       updateNumericInput(inputId = "Nb_personnes", value = r_local$current_recette$Nb_personnes)
@@ -67,8 +67,9 @@ mod_page_recette_server <- function(id, r_global = r_global){
     observeEvent(eventExpr = input$Nb_personnes, handlerExpr = {
       req(input$Nb_personnes)
       r_local$current_ingredients <- convert_proportions(tab = r_local$current_ingredients,
-                                                         base_nb_personnes = r_local$base_Nb_personnes,
+                                                         old_nb_personnes = r_local$prec_Nb_personnes,
                                                          new_nb_personnes = input$Nb_personnes)
+      r_local$prec_Nb_personnes <- input$Nb_personnes#update du nb de personnes considéré dans current_recette
     })
 
 

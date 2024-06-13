@@ -19,6 +19,8 @@ devtools::check()
 rhub::check_for_cran()
 
 # Deploy
+#install from github
+devtools::install_github("https://github.com/ClementC38/recettesCC")
 
 ## Local, CRAN or Package Manager ----
 ## This will build a tar.gz that can be installed locally,

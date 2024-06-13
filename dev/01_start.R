@@ -26,7 +26,7 @@ golem::fill_desc(
   author_last_name = "Claustre", # Your Last Name
   author_email = "clement.claustre@gmail.com", # Your Email
   repo_url = NULL, # The URL of the GitHub Repo (optional),
-  pkg_version = "1.0" # The Version of the package containing the App
+  pkg_version = "1.01" # The Version of the package containing the App
 )
 
 ## Set {golem} options ----
@@ -74,17 +74,17 @@ rstudioapi::navigateToFile("dev/02_dev.R")
 
 #Initialisation de la base de données avec les données historiques
 
-library(RSQLite)
-mydb <- dbConnect(RSQLite::SQLite(), "inst/bdd/bdd_recette.sqlite")
-
-recettes <- read.csv2("C:/Users/PC-Clem/Desktop/appli/appli V2/data/recette.csv")
-ingredients <- read.csv2("C:/Users/PC-Clem/Desktop/appli/appli V2/data/ingredients.csv")
-instructions <- read.csv2("C:/Users/PC-Clem/Desktop/appli/appli V2/data/instructions.csv")
-
-
-dbWriteTable(mydb, "recettes", recettes, overwrite = FALSE)
-dbWriteTable(mydb, "ingredients", ingredients, overwrite = FALSE)
-dbWriteTable(mydb, "instructions", instructions, overwrite = FALSE)
-
-dbListTables(mydb)
-dbDisconnect(mydb)
+# library(RSQLite)
+# mydb <- dbConnect(RSQLite::SQLite(), "inst/bdd/bdd_recette.sqlite")
+#
+# recettes <- read.csv2("C:/Users/PC-Clem/Desktop/appli/appli V2/data/recette.csv")
+# ingredients <- read.csv2("C:/Users/PC-Clem/Desktop/appli/appli V2/data/ingredients.csv")
+# instructions <- read.csv2("C:/Users/PC-Clem/Desktop/appli/appli V2/data/instructions.csv")
+#
+#
+# dbWriteTable(mydb, "recettes", recettes, overwrite = FALSE)
+# dbWriteTable(mydb, "ingredients", ingredients, overwrite = FALSE)
+# dbWriteTable(mydb, "instructions", instructions, overwrite = FALSE)
+#
+# dbListTables(mydb)
+# dbDisconnect(mydb)

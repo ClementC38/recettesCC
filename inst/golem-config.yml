@@ -1,6 +1,6 @@
 default:
   golem_name: recettesCC
-  golem_version: '1.0'
+  golem_version: '1.01'
   app_prod: no
 production:
   app_prod: yes

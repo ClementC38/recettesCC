@@ -1,6 +1,6 @@
 Package: recettesCC
 Title: Recettes de cuisine de Clément
-Version: 1.0
+Version: 1.01
 Authors@R: person('Clément', 'Claustre', email = 'clement.claustre@gmail.com', role = c('cre', 'aut'))
 Description: Mon livre de recettes (surtout des desserts).
 License: MIT + file LICENSE
@@ -12,6 +12,7 @@ Imports:
     dplyr,
     DT,
     golem (>= 0.4.1),
+    pkgload,
     purrr,
     RSQLite,
     shiny (>= 1.8.1.1)
