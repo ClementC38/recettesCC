@@ -12,6 +12,7 @@ Imports:
     dplyr,
     DT,
     golem (>= 0.4.1),
+    pkgload,
     purrr,
     RSQLite,
     shiny (>= 1.8.1.1)
