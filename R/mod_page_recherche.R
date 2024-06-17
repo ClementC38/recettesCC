@@ -14,7 +14,9 @@ mod_page_recherche_ui <- function(id){
     sidebarLayout(
       sidebarPanel(width = 4,
                    h2("Chercher une recette"),
-                   textInput(ns("texte_recherche"), "Nom :", NULL),
+                   textInput(ns("texte_recherche"), "Nom :", NULL) |>
+                     tagAppendAttributes(#onkeydown => créer un input text_recherche_keydown qui prend la touche enfoncée
+                       onkeydown = sprintf("Shiny.setInputValue('%s_keydown', event.key)", ns("texte_recherche"))),
                    selectizeInput(
                      inputId = ns("ingredient_must"),
                      label = "Avec :",
@@ -52,7 +54,7 @@ mod_page_recherche_ui <- function(id){
       # Show a plot of the generated distribution
       mainPanel(width = 8,
                 h3("Liste des recettes correspondant \u00e0 la recherche :"),
-                DTOutput(outputId = ns("listing_recettes"))
+                DTOutput(outputId = ns("listing_recettes"), width = "100%")
       )
     )
   )
@@ -94,6 +96,13 @@ mod_page_recherche_server <- function(id, r_global = r_global){
       showNotification(ui = "S\u00e9lection mise \u00e0 jour.", type = "message", duration = 1)
     })
 
+    #Update de la recherche lorsque l'utilisateur appuis sur "entrer" dans textinput
+    observeEvent(eventExpr = input$texte_recherche_keydown,  handlerExpr = {
+      if(input$texte_recherche_keydown == "Enter"){
+        golem::invoke_js("clickon", "#page_recherche-search_button")
+      }
+    })
+
     #Event clic tableau (update id_recette)
     observeEvent(input$listing_recettes_cell_clicked$value, {
       r_global$id_recette <- r_local$current_recettes[input$listing_recettes_cell_clicked$row,"id_recette"]
@@ -106,6 +115,7 @@ mod_page_recherche_server <- function(id, r_global = r_global){
 
 
     #Outputs
+    ##tableau des recettes sélectionnées
     output$listing_recettes <- renderDT(expr = {
       req(r_local$current_recettes)
       clean_recettes(r_local$current_recettes)
