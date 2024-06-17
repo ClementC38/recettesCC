@@ -13,10 +13,10 @@ app_ui <- function(request) {
     fluidPage(theme = bslib::bs_theme(version = 4, preset = "lux"),
               navbarPage(title = "Recettes CC",
                          id = "main_nav",
-                         tabPanel("Recherche",
+                         tabPanel("Recherche", value = "nav-recherche",
                                   mod_page_recherche_ui("page_recherche")
                          ),
-                         tabPanel(title = "Recette",
+                         tabPanel(title = "Recette", value = "nav-recette",
                                   mod_page_recette_ui("page_recette")
                          )
               )

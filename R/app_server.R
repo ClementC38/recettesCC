@@ -7,6 +7,9 @@
 #' @importFrom dplyr mutate
 #' @noRd
 app_server <- function(input, output, session) {
+  ##cache l'onglet recette
+  golem::invoke_js("hide", "a[data-value='nav-recette']")#par défaut caché
+
   # Your application server logic
   # Ouverture DB + décharge les bases dans des data.frames
   db_recettes = dbConnect(drv = RSQLite::SQLite(),
@@ -33,16 +36,11 @@ app_server <- function(input, output, session) {
   mod_page_recette_server("page_recette", r_global = r_global)
 
   #Events
-  ##Passe à la page "recettes" quand une nouvelle recette est sélectionnée
+  ##Passe à la page "recettes" quand une nouvelle recette est sélectionnée et affiche l'onglet recette
   observeEvent(r_global$id_recette, {
-    updateNavbarPage(inputId="main_nav",
-                     selected="Recette")
-  })
-
-  ##cache l'onglet recette et l'affiche la première fois que id_recette est modofié
-  golem::invoke_js("hideid", "page-recette")#par défaut caché
-  observeEvent(r_global$id_recette, {
-    golem::invoke_js("showid", "page-recette")
+    golem::invoke_js("show", "a[data-value='nav-recette']")#affiche l'onglet la première fois
+    updateNavbarPage(inputId = "main_nav",
+                     selected = "nav-recette")
   })
 
   #Destruction de la session
