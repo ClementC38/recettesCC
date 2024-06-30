@@ -3,7 +3,6 @@
 #' @param input,output,session Internal parameters for {shiny}.
 #'     DO NOT REMOVE.
 #' @import shiny
-#' @importFrom RSQLite dbConnect dbReadTable dbDisconnect
 #' @importFrom dplyr mutate
 #' @noRd
 app_server <- function(input, output, session) {
@@ -11,21 +10,12 @@ app_server <- function(input, output, session) {
   golem::invoke_js("hide", "a[data-value='nav-recette']")#par défaut caché
 
   # Your application server logic
-  # Ouverture DB + décharge les bases dans des data.frames
-  db_recettes = dbConnect(drv = RSQLite::SQLite(),
-                          system.file("bdd/bdd_recette.sqlite", package = "recettesCC"))
-
-  tab_recettes = dbReadTable(db_recettes, "recettes")
-  tab_ingredients = dbReadTable(db_recettes, "ingredients") |>
-    mutate(quantite = as.numeric(as.character(quantite)))
-  tab_instructions = dbReadTable(db_recettes, "instructions")
-
   #Init reactive values
   r_global = reactiveValues(
     #Ces tables restent fixes mais sont transmisent à l'aide de r_global
-    tab_recettes = tab_recettes,
-    tab_ingredients = tab_ingredients,
-    tab_instructions = tab_instructions,
+    tab_recettes = read.csv2(system.file("csv/recettes.csv", package = "recettesCC")),
+    tab_ingredients = read.csv2(system.file("csv/ingredients.csv", package = "recettesCC")),
+    tab_instructions = read.csv2(system.file("csv/instructions.csv", package = "recettesCC")),
 
     #Identifiant de la recette passé à la page_recette
     id_recette = NULL

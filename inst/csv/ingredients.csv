@@ -1,0 +1,122 @@
+id_recette;nom_ingredient;quantite;unite
+1;Purée;500;g
+1;Farine;175;g
+1;Oeuf;1;petit
+1;Beurre;1;Noix
+2;Oeuf;1;NA
+2;Sucre;85;g
+2;Beurre;85;g
+2;Farine;150;g
+2;Chocolat;100;g
+2;Sucre vanillé;1;Sachet
+2;Levure chimique;1;càc
+2;Sel;0.5;càc
+3;Spéculoos;200;g
+3;Beurre;80;g
+3;Philadelphia;600;g
+3;Sucre;70;g
+3;Farine;3;càs
+3;Jus de citron;2;citron
+3;Zeste de citron;3;citron
+3;Oeuf;2;NA
+3;Jaune d'oeuf;2;NA
+3;Crème fleurette;50;cl
+3;Sucre vanillé;2;Sachet(s)
+4;Pâte à pain;400;g
+4;Beurre salé;200;g
+4;Sucre;200;g
+4;Lait;NA;NA
+5;Chocolat;250;g
+5;Beurre;20;g
+5;Crème liquide;10;cl
+6;Farine;300;g
+6;Beurre;150;g
+6;Eau;8;cl
+6;Sucre;3;càs
+7;Jus de citron;150;ml
+7;Zeste de citron;1;NA
+7;Sucre;75;g
+7;Oeuf;3;NA
+7;Maïzena;1;càs
+7;Beurre;75;g
+8;Mascarpone;250;g
+8;Oeuf;3;NA
+8;Biscuit à la cuillère;28;NA
+8;Café;150;ml
+8;Sucre;50;g
+8;Rhum;3;càs
+8;Cacao;NA;NA
+9;Farine;250;g
+9;Sucre;30;g
+9;Levure;1;NA
+9;Beurre;65;g
+9;Lait;30;cl
+9;Oeuf;2;NA
+10;Farine;200;g
+10;Sucre;75;g
+10;Lait;75;cl
+10;Pruneaux;20;NA
+10;Oeuf;4;NA
+10;Rhum;3;càs
+10;Fleur d'oranger;3;càs
+11;Tomates;1;kg
+11;Poivron rouge;1;NA
+11;Concombre;1;Petit
+11;Oignon;1;NA
+11;Ail;2;Gousses
+11;Huile d'olive;1;càs
+12;Chocolat;150;g
+12;Farine;35;g
+12;Sucre;40;g
+12;Beurre;100;g
+12;Oeuf;3;NA
+13;Blanc d'oeuf;1;NA
+13;Sucre;50;g
+13;Noix de coco;50;g
+14;Lait;500;ml
+14;Beurre;50;g
+14;Farine;250;g
+14;Oeuf;4;NA
+14;Sucre;2;càs
+14;Sucre vanillé;1;sachet
+14;Rhum;2;càs
+14;Bière blonde;10;cl
+14;sel;1;pincée
+15;Beurre;100;g
+15;Farine;125;g
+15;Sucre vanillé;1;sachet
+15;Rhubarbe;500;g
+15;Sucre;60;g
+16;Pois chiches;1;Boite
+16;Cumin;1;cc
+16;Ail;2;petites gousses
+16;Jus de citron;2;càs
+16;Tahin;3;càs
+16;Huile d'olive;2;càs
+16;Huile de sésame;1;càs
+17;Farine;100;g
+17;Vin blanc;36;g
+17;Huile;32;g
+17;Sel;2;g
+18;Beurre tendre;50;g
+18;Farine;175;g
+18;Beurre de cacahuète;200;g
+18;Sucre brun;100;g
+18;Oeuf;1;NA
+18;Levure chimique;1;càc
+19;Rhum;9;cl
+19;Farine;40;g
+19;Sucre;120;g
+19;Sucre vanillé;1;g
+19;Beurre demi-sel;125;g
+19;Poudre d'amandes;100;g
+19;Oeuf;3;NA
+19;Sucre glace;100;g
+20;Pâte sablée;1;NA
+20;Miel;25;g
+20;Noix;200;g
+20;Sucre;150;g
+20;Eau;7;cl
+20;Crème liquide;15;cl
+20;Beurre demi-sel;25;g
+20;Oeuf;2;NA
