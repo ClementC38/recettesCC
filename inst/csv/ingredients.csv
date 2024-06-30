@@ -119,4 +119,8 @@ id_recette;nom_ingredient;quantite;unite
 20;Eau;7;cl
 20;Crème liquide;15;cl
 20;Beurre demi-sel;25;g
-20;Oeuf;2;NA
+21;Sel;1;pincée
+21;Beurre;100;g
+21;Sucre;75;g
+21;Farine;250;g
+21;Oeuf;1;NA

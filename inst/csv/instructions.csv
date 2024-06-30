@@ -99,6 +99,11 @@ id_recette;id_etape;etape
 20;2;Pendant ce temps, mettre l'eau, le sucre et une goûte de citron dans une casserole sur feu doux
 20;3;Une fois que le caramel est brun, ajouter la crème et laisse cuire 1-2 minutes sur feu doux pour uniformiser (attention aux éclaboussures)
 20;4;Stopper la cuisson en ajoutant le miel et le beurre
-20;5;Ajouter les noix puis les œufs une fois le mélange légèrement refroidit
+20;5;Ajouter les noix et mélanger
 20;6;Mettre le mélange sur le fond de tarte
 20;7;Enfourner à 170°C pendant 15-20 minutes
+21;1;Mélanger l'oeuf avec le sucre et le sel
+21;2;Incorporer la farine puis le beurre fondu
+21;3;Malaxer. Éviter de trop travailler la pâte
+21;4;Laisser reposer au frigo 30-60minutes
+21;5;Si la pâte doit être précuite, enfourner 12-15 minutes à 180°C
