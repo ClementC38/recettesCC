@@ -32,9 +32,4 @@ app_server <- function(input, output, session) {
     updateNavbarPage(inputId = "main_nav",
                      selected = "nav-recette")
   })
-
-  #Destruction de la session
-  onSessionEnded(function(){
-    dbDisconnect(db_recettes)
-  })
 }
