@@ -14,7 +14,8 @@ app_server <- function(input, output, session) {
   r_global = reactiveValues(
     #Ces tables restent fixes mais sont transmisent à l'aide de r_global
     tab_recettes = read.csv2(system.file("csv/recettes.csv", package = "recettesCC")),
-    tab_ingredients = read.csv2(system.file("csv/ingredients.csv", package = "recettesCC")),
+    tab_ingredients = read.csv2(system.file("csv/ingredients.csv", package = "recettesCC")) |>
+      mutate(quantite = as.numeric(quantite)),
     tab_instructions = read.csv2(system.file("csv/instructions.csv", package = "recettesCC")),
 
     #Identifiant de la recette passé à la page_recette
