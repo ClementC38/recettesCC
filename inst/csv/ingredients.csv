@@ -126,14 +126,25 @@ id_recette;nom_ingredient;quantite;unite
 21;Oeuf;1;NA
 22;Oeuf;6;
 22;Chocolat;300;g
-23;Lait entier;450;ml
+23;Lait entier;500;ml
 23;Gousse de vanille;0.5;Gousses
-23;Farine;125;g
+23;Farine;140;g
 23;Sucre brun;175;g
-23;jaunes d'oeuf;3;g
-23;Rhum ambré;80;ml
+23;Jaunes d'oeuf;3;
+23;Rhum ambré;90;ml
 24;Aubergine;3;
 24;Huile;;
 24;Ail;2;Gousses
 24;Citron;1;
 24;Cumin;1;càc
+25;Farine;500;g
+25;Sucre blanc;70;g
+25;Levure de boulanger;1;Sachet
+25;Sel;0.5;càc
+25;Lait;180;ml
+25;Beurre;130;g
+25;œuf;2;
+25;Sucre roux;100;g
+25;Canelle en poudre;2;càs
+25;Sucre glace;100;g
+25;Philadelphia;50;g
